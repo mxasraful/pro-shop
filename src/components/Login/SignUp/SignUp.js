@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 
 const SignUp = () => {
 
+    const [name, setName] = useState(null)
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
-    const [fieldRequired, setFieldRequired] = useState(false)
+    const [nameRequired, setNameRequired] = useState(false)
+    const [emailRequired, setEmailRequired] = useState(false)
+    const [passwordRequired, setPasswordRequired] = useState(false)
     const [typeInvalid, detTypeInvalid] = useState(false)
     const [pwdType, setPwdType] = useState(true)
 
@@ -16,11 +19,10 @@ const SignUp = () => {
             setPwdType(true)
         }
     }
-
     
     // Handle login user
-    const handleLoginUser = (email, password) => {
-        if (email && password) {
+    const handleSignUpUser = (e) => {
+        if (name && email && password) {
             if (/\S+@\S+\.\S+/.test(email) && /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password)) {
                 setFieldRequired(false)
                 detTypeInvalid(false)
@@ -37,7 +39,7 @@ const SignUp = () => {
 
 
     return (
-        <form className="loginSignUp">
+        <form onSubmit={handleSignUpUser} className="loginSignUp">
             <div className="text-center">
                 <h5 className="mb-4">Create Account</h5>
             </div>

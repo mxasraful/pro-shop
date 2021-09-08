@@ -52,8 +52,8 @@ const Header = () => {
                                                 {userInfo.name}
                                             </div>
                                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
-                                                <li><Link class="dropdown-item" to="/user/account">Account</Link></li>
-                                                {/* <li><Link class="dropdown-item" to="/user/profile">Profile</Link></li> */}
+                                                {/* <li><Link class="dropdown-item" to="/user/account">Account</Link></li> */}
+                                                <li><Link class="dropdown-item" to="/user/profile">Profile</Link></li>
                                                 <li><button onClick={logoutHandler} class="dropdown-item">Sign Out</button></li>
                                             </ul>
                                         </div>
