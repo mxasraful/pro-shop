@@ -21,6 +21,11 @@ export const signup = (name, email, password) => async (dispatch) => {
             payload: data
         })
 
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: data
+        })
+
         localStorage.setItem("userInfo", JSON.stringify(data))
     } catch (error) {
         dispatch({

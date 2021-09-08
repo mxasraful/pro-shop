@@ -8,18 +8,20 @@ import Loader from '../../Reusable/Loader/Loader';
 
 const SignIn = () => {
 
+    const dispatch = useDispatch()
+    
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [pwdType, setPwdType] = useState(true)
 
     const history = useHistory()
-    const dispatch = useDispatch()
 
     const userLogin = useSelector(state => state.userLogin)
     const { loading, error, userInfo } = userLogin
 
     const redirect = window.location.search ? window.location.search.split("=")[1] : '/'
 
+    // Redirect the page
     useEffect(() => {
         if (userInfo) {
             history.push(redirect)
