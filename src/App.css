@@ -1,0 +1,28 @@
+main {
+    min-height: 70vh;
+}
+
+.text-color {
+    color: rgb(42, 44, 46);
+}
+
+.header-color {
+    color: rgb(80, 80, 80)
+}
+
+.svg-inline--fa.fa-w-18 {
+    width: 13px !important;
+}
+
+a{
+    text-decoration: none;
+}
+
+.loginPage .card {
+    width: 278.93px !important;
+    margin: 0 auto;
+}
+
+.responsive-nav-items{
+    display: none !important;
+}

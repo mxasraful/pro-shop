@@ -1,0 +1,20 @@
+
+.productImg{
+    min-height: 200px;
+    margin-bottom: 30px;
+}
+
+.productImg img{
+    height: 200px;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.productTitle{
+    color: rgb(48, 48, 48);
+    text-decoration: none;
+}
+
+.productTitle:hover{
+    color: rgb(0, 0, 0);
+}

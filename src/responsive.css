@@ -1,0 +1,82 @@
+/*	Less Framework 4 with 18/24 type presets
+	http://lessframework.com
+	by Joni Korpi
+	License: http://opensource.org/licenses/mit-license.php	*/
+
+/*	Resets
+	------	*/
+
+/*		Default Layout: 992px. 
+            Gutters: 24px.
+            Outer margins: 48px.
+            Leftover space for scrollbars @1024px: 32px.
+    -------------------------------------------------------------------------------
+    cols    1     2      3      4      5      6      7      8      9      10
+    px      68    160    252    344    436    528    620    712    804    896    */
+
+/*		Tablet Layout: 768px.
+            Gutters: 24px.
+            Outer margins: 28px.
+            Inherits styles from: Default Layout.
+    -----------------------------------------------------------------
+    cols    1     2      3      4      5      6      7      8
+    px      68    160    252    344    436    528    620    712    */
+
+@media only screen and (max-width: 991px) {
+    .navbar-toggler {
+        display: none !important;
+    }
+    .navbar-collapse {
+        display: none !important;
+    }
+    .responsive-nav-items {
+        display: flex !important;
+    }
+}
+
+/*		Mobile Layout: 320px.
+            Gutters: 24px.
+            Outer margins: 34px.
+            Inherits styles from: Default Layout.
+    ---------------------------------------------
+    cols    1     2      3
+    px      68    160    252    */
+
+@media only screen and (max-width: 767px) {}
+
+/*		Wide Mobile Layout: 480px.
+            Gutters: 24px.
+            Outer margins: 22px.
+            Inherits styles from: Default Layout, Mobile Layout.
+    ------------------------------------------------------------
+    cols    1     2      3      4      5
+    px      68    160    252    344    436    */
+
+@media only screen and (max-width: 580px) {
+    .cartItem .row {
+        display: flex !important;
+    }
+    .cartItemImg {
+        width: 39% !important;
+    }
+    .cartItemName {
+        width: 61% !important;
+        padding-top: 0 !important;
+    }
+    .cartItemPrice {
+        width: 45% !important;
+    }
+    .cartItemQty {
+        width: 35% !important;
+    }
+    .cartItemQty select {
+        width: 70% !important;
+    }
+}
+
+/*	Retina media query.
+        Overrides styles for devices with a 
+        device-pixel-ratio of 2+, such as iPhone 4.
+    -----------------------------------------------    */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {}
