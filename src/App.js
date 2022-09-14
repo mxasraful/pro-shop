@@ -11,13 +11,23 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import ProductScreen from './components/ProductScreen/ProductScreen';
 import CartScreen from './components/CartScreen/CartScreen';
+import { PrivateRoute } from './components/Reusable/PrivateRoute/PrivateRoute';
+import { useSelector } from 'react-redux';
+import Checkout from './components/Checkout/Checkout';
+import AccountScreen from './components/AccountScreen/AccountScreen';
+import Shipping from './components/Shipping/Shipping';
 
 function App() {
+
+  const { userInfo } = useSelector(state => state.userLogin)
+
+  const path = window.location.pathname
+
   return (
     <div className="App">
       <Router>
         <Header />
-        <main>
+        <main className={path === "/login" && "main-for-login"}>
           <Switch>
             <Route exact path="/">
               <Home />
@@ -31,6 +41,15 @@ function App() {
             <Route path="/cart">
               <CartScreen />
             </Route>
+            <PrivateRoute user={userInfo} path="/shipping">
+              <Shipping />
+            </PrivateRoute>
+            <PrivateRoute user={userInfo} path="/checkout">
+              <Checkout />
+            </PrivateRoute>
+            <PrivateRoute user={userInfo} path="/user/account">
+              <AccountScreen userInfo={userInfo} />
+            </PrivateRoute>
             <Route path="/product/:id">
               <ProductScreen />
             </Route>

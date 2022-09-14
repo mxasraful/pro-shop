@@ -9,6 +9,9 @@ const Header = () => {
     const dispatch = useDispatch()
 
     const { userInfo } = useSelector(state => state.userLogin)
+    const cartItems = useSelector((state) => state?.cart?.cartItems ? state?.cart?.cartItems.length < 1 ? null : state?.cart?.cartItems : null)
+    
+    const path = window.location.pathname
 
     // Logout handler
     const logoutHandler = () => {
@@ -16,7 +19,7 @@ const Header = () => {
     }
 
     return (
-        <div className="headerComp">
+        <div className={path === "/login" ? "header-for-login headerComp" : "headerComp"}>
             <nav class="navbar navbar-expand-lg navbar-dark text-light bg-secondary py-4">
                 <div class="container">
                     <Link class="navbar-brand" to="/">
@@ -42,7 +45,10 @@ const Header = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                                 </svg>
-                                <div style={{ marginTop: "-12px", position: "absolute", marginLeft: "-5px" }} class="badge text-light">.</div>
+                                {
+                                    cartItems &&
+                                    <div style={{ marginTop: "-12px", position: "absolute", marginLeft: "-5px" }} class="badge text-light">.</div>
+                                }
                             </Link>
                             {
                                 userInfo ?
@@ -52,14 +58,14 @@ const Header = () => {
                                                 {userInfo.name}
                                             </div>
                                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
-                                                {/* <li><Link class="dropdown-item" to="/user/account">Account</Link></li> */}
-                                                <li><Link class="dropdown-item" to="/user/profile">Profile</Link></li>
+                                                <li><Link class="dropdown-item" to="/user/account">Account</Link></li>
+                                                {/* <li><Link class="dropdown-item" to="/user/profile">Profile</Link></li> */}
                                                 <li><button onClick={logoutHandler} class="dropdown-item">Sign Out</button></li>
                                             </ul>
                                         </div>
                                     </div>
                                     :
-                                    <Link to="/login" className="btn btn-outline-light btn-sm px-4 ms-3">Sign In</Link>
+                                    <a href="/login" className="btn btn-outline-light btn-sm px-4 ms-3">Sign In</a>
                             }
                         </div>
                     </div>

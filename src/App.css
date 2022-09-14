@@ -1,5 +1,5 @@
 main {
-    min-height: 70vh;
+    min-height: 75vh;
 }
 
 .text-color {
@@ -18,10 +18,6 @@ a{
     text-decoration: none;
 }
 
-.loginPage .card {
-    width: 278.93px !important;
-    margin: 0 auto;
-}
 
 .responsive-nav-items{
     display: none !important;

@@ -9,6 +9,7 @@ import RegularStar from '../Reusable/Product/Rating/RegularStar/RegularStar';
 
 const ProductScreen = () => {
 
+    const [screenImage, setScreenImage] = useState(null)
     const [qty, setQty] = useState(1)
 
     const path = useParams()
@@ -34,6 +35,13 @@ const ProductScreen = () => {
         history.push(`/cart/${path.id}?qty=${qty}`)
     }
 
+    // Set defult image
+    useEffect(() => {
+        if (product?.imgs) {
+            setScreenImage(product.imgs[0])
+        }
+    }, [product])
+
     return (
         <div className="productScreenPage">
             <div className="container">
@@ -52,7 +60,16 @@ const ProductScreen = () => {
                             :
                             <div className="row">
                                 <div className="col-sm-5 productScreenImgs text-center">
-                                    <img style={{ height: "400px", objectFit: "contain" }} src={product?.imgs && product?.imgs[0]} alt="" className="img-fluid" />
+                                    <img style={{ height: "400px", objectFit: "contain" }} src={screenImage && screenImage} alt="" className="img-fluid py-4" />
+                                    <div className="item-images w-100 row">
+                                        {
+                                            product?.imgs?.map(dt => (
+                                                <div className="card p-1 me-1 d-flex justify-content-center align-items-center mb-3" style={{width: "100px", height: "100px", cursor: "pointer"}} onClick={() => setScreenImage(dt)}>
+                                                    <img src={dt} alt={product?.title} style={{maxWidth: "90px", maxHeight: "-webkit-fill-available", margin: "0 auto"}}/>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
                                 </div>
                                 <div className="ps-4 col-sm-4">
                                     <h5 className="productScreeTitle">{product?.title}</h5>
@@ -83,11 +100,38 @@ const ProductScreen = () => {
                                         <hr />
                                     </div>
                                     <div className="productsScreenPrice">
-                                        <small>Price: ${product?.price && product?.price[0]}.99</small>
+                                        <><b>Price:</b>  ${product?.price && product?.price[0]}.00</>
                                         <hr />
                                     </div>
+                                    <div className="productScreenSpecs">
+                                        <b> Specs:</b>
+                                        <table class="table table-bordered mt-2 productsScreenPriceTable">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Brand </td>
+                                                    <td>{product?.brand && product?.brand}</td>
+                                                </tr>
+                                                {
+                                                    product.specs?.map(dt => (
+                                                        <tr>
+                                                            <td>{dt.title}</td>
+                                                            <td>{dt.data}</td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     <div className="productScreenAbout">
-                                        Description: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                        {
+                                            product.description ?
+                                                <>
+                                                    <b> Description: </b>{product.description}
+                                                </>
+                                                : <>
+                                                    <b> Description:</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                </>
+                                        }
                                     </div>
                                 </div>
                                 <div className="col-md-3">
@@ -95,7 +139,7 @@ const ProductScreen = () => {
                                         <li class="list-group-item">
                                             <div className="row">
                                                 <div className="col-7">Price: </div>
-                                                <div className="col-5">${product?.price && product?.price[0]}.99</div>
+                                                <div className="col-5">${product?.price && product?.price[0]}.00</div>
                                             </div>
                                         </li>
                                         <li class="list-group-item">
@@ -122,7 +166,7 @@ const ProductScreen = () => {
                                                                         [...Array(product?.stockItems).keys()].map(dt => (
                                                                             <option key={dt + 1} value={dt + 1}>{dt + 1}</option>
                                                                         ))
-                                                                        
+
                                                                 }
                                                             </select>
                                                         </form>

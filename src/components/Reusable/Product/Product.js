@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Product.css'
 import Rating from './Rating/Rating';
 import RegularStar from './Rating/RegularStar/RegularStar';
@@ -7,13 +8,13 @@ const Product = ({ dt }) => {
 
     return (
         <div className="product">
-            <a href={`/product/${dt?._id}`} className="">
+            <Link to={`/product/${dt?._id}`} className="">
                 <div className="productImg text-center">
                     <img src={dt?.imgs[0]} alt="" className="img-fluid" />
                 </div>
-            </a>
+            </Link>
             <div className="div">
-                <a href={`/product/${dt?._id}`} className="productTitle">
+                <Link to={`/product/${dt?._id}`} className="productTitle">
                     {dt?.title.slice(0, 50)}
                     {dt?.title.length >= 31 ?
                         <>...</>
@@ -23,7 +24,7 @@ const Product = ({ dt }) => {
                             <br />
                         </>
                     }
-                </a>
+                </Link>
             </div>
             <div style={{ color: "#484848" }} className="productReviews mt-2">
                 {
@@ -45,7 +46,7 @@ const Product = ({ dt }) => {
                         </>
                 }
             </div>
-            <h4 className="productPrice text-color mt-1">$ {dt?.price[0]}.99</h4>
+            <h4 className="productPrice text-color mt-1">$ {dt?.price[0]}.00</h4>
         </div>
     );
 };

@@ -5,6 +5,7 @@ import './Home.css'
 import { listProducts } from '../../actions/productActions';
 import Loader from '../Reusable/Loader/Loader';
 import Message from '../Reusable/Message/Message';
+import Banner from './Banner/Banner';
 
 const Home = () => {
 
@@ -22,33 +23,36 @@ const Home = () => {
         <div className="homeComp my-5">
             <div className="container">
                 <div className="homeProducts">
-                    <div className="homeLatestProducts row">
+                    <div className="homeLatestProducts">
                         {
                             loading ?
-                                <div className="homeLProductsLoader" style={{ marginTop: "30vh" }}>
+                                <div className="homeLProductsLoader" style={{ paddingTop: "35vh" }}>
                                     <Loader />
                                 </div>
                                 : error ?
-                                    <div className="homeProductsError" style={{ marginTop: "30vh" }}>
+                                    <div className="homeProductsError" style={{ paddingTop: "35vh" }}>
                                         <Message />
                                     </div>
                                     : products ?
                                         <>
+                                            <Banner></Banner>
                                             <h2 className="homeLProductsTitle text-uppercase mb-4">Latest Products</h2>
-                                            {
-                                                products?.map(dt => (
-                                                    <div className="col-sm-3 mb-5">
-                                                        <div className="card">
-                                                            <div className="card-body">
-                                                                <Product dt={dt} />
+                                            <div className="row">
+                                                {
+                                                    products?.map(dt => (
+                                                        <div className="col-sm-3 mb-5">
+                                                            <div className="card">
+                                                                <div className="card-body">
+                                                                    <Product dt={dt} />
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                ))
-                                            }
+                                                    ))
+                                                }
+                                            </div>
                                         </>
                                         :
-                                        <div className="homeProductsError" style={{ marginTop: "30vh" }}>
+                                        <div className="homeProductsError" style={{ paddingTop: "35vh" }}>
                                             <div className="text-center">
                                                 <div>Products not found.</div>
                                             </div>
